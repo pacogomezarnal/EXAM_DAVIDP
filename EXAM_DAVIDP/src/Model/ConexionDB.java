@@ -23,12 +23,12 @@ public class ConexionDB {
 	private String url;
 	
 	//Conexion
-	private static Connection conexion = null;// maneja la conexió
+	private static Connection conexion = null;// maneja la conexión
 	
 	//Instancia unica
 	private static ConexionDB instance = null;
 	
-	private ConexionDB(String HOST,String BBDD,String USER,String PASS) {
+	public ConexionDB(String HOST,String BBDD,String USER,String PASS) {
 		this.host=HOST;
 		this.bbdd=BBDD;
 		this.user=USER;

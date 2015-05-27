@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.ScrollPane;
 
 import javax.swing.JButton;
@@ -22,8 +23,14 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import java.awt.Font;
+import java.util.Iterator;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
+import modelo.Delincuente;
+import Model.usuariosModel;
+import Model.ConexionDB;
 
 public class panelPrincipal2 extends JPanel {
 
@@ -34,10 +41,36 @@ public class panelPrincipal2 extends JPanel {
 	private JTextField edadTextField;
 	private JTextField nacionalidadTextField;
 	private JTextField apellidosTextField;
-
+	private JComboBox usuariosDesplegable;
+	private usuariosModel usuariosModel;
+	private panelPrincipal2 boton;
+	
 	
 	public panelPrincipal2() {
+		
+		String HOST="localhost";
+		String BBDD="thelaby";
+		String USER="root";
+		String PASS="";
+		
+		ConexionDB conBD = new ConexionDB(HOST, BBDD, USER, PASS);
+		
+		ConexionDB usuariosDb = new ConexionDB("localhost", "thelaby", "root", "");
+	
 		setLayout(null);
+		
+		usuariosDesplegable = new JComboBox();
+		usuariosDesplegable.setBounds(31, 58, 125, 38);
+		add(usuariosDesplegable);
+		
+		usuariosModel = new usuariosModel();
+		
+		Iterator<String> it = this.usuariosModel.getUsuarios().Iterator();
+		
+		while(it.hasNext()){
+			String usuario = it.next();
+			usuariosDesplegable.addItem(usuario);
+		}
 		
 		JLabel lblNombre = new JLabel("Nombre"); //texto 'nombre' que hay arriba del desplegable.
 		lblNombre.setBounds(257, 26, 79, 14);
@@ -96,15 +129,21 @@ public class panelPrincipal2 extends JPanel {
 		add(apellidosTextField);
 		
 		JButton button = new JButton("<< Atras");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(boton!=null)
+					visualizarPanelPrincipal2();
 		button.setBounds(21, 352, 135, 23);
 		add(button);
 		
 		JLabel lblEquipo = new JLabel("Equipo");
-		lblEquipo.setBounds(23, 26, 79, 14);
+		lblEquipo.setBounds(21, 26, 79, 14);
 		add(lblEquipo);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(21, 58, 149, 23);
-		add(comboBox);
 	}
+
+			private void visualizarPanelPrincipal2() {
+				panelPrincipal2.paintAll(boton);
+				
+			}
 }

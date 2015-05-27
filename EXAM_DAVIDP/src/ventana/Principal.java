@@ -17,15 +17,37 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Model.ConexionDB;
+
 import java.awt.CardLayout;
 
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane; //cuadro de app	
+	
 	panelPrincipal panelPrincipal=new panelPrincipal(); //se declara el panelPrincipal1
 	panelPrincipal2 panelPrincipal2=new panelPrincipal2();//se declara el panelPrincipal2
 	panelPrincipal3 panelPrincipal3=new panelPrincipal3();//se declara el panelPrincipal3
+	
+	
+public static void main(String[] args) {
+		
+		
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);				
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,11 +58,11 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0)); //cardLayout para tener un panel principal y subpaneles.
 		
-		contentPane.add(panelPrincipal, "PanelPrincipal"); //carga el panel del panel principal1 
 		contentPane.add(panelPrincipal2, "PanelPrincipal2"); //carga el panel del panel principal2
+		contentPane.add(panelPrincipal, "PanelPrincipal"); //carga el panel del panel principal1 
+		
 		contentPane.add(panelPrincipal3, "PanelPrincipal3"); //carga el panel del panel principal3 
 		
 		
 			}
 }
-

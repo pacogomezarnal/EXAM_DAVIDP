@@ -3,47 +3,53 @@ package ventana;
 import javax.swing.JPanel;
 
 import java.awt.Canvas;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Button;
+import java.awt.Container;
 import java.awt.ScrollPane;
 
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import java.awt.Font;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import Model.ConexionDB;
+
 public class panelPrincipal extends JPanel {
 
-	private JTextField txtJuegos;
+	
 	private Border border;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JPanel contentPane;
+	private panelPrincipal2 panelPrincipal2;
+	private panelPrincipal panelPrincipal;
 
 	
 	public panelPrincipal() {
 		setLayout(null);
 		
-		txtJuegos = new JTextField();//donde se pone la contraseña vacia
-		txtJuegos.setToolTipText("La contraseña debe contener diversos caracteres."); //requisitos de la contraseña
-		txtJuegos.setHorizontalAlignment(SwingConstants.CENTER);//fuente de la contraseña
-		txtJuegos.setFont(new Font("Sylfaen", Font.PLAIN, 23));//fuente de la contraseña
-		txtJuegos.setBounds(257, 131, 149, 30);
-		add(txtJuegos);
 		
 		JLabel lblNombre = new JLabel("Nombre"); //texto 'usuario' que hay arriba del desplegable.
 		lblNombre.setBounds(257, 26, 79, 14);
@@ -52,10 +58,6 @@ public class panelPrincipal extends JPanel {
 		JLabel lblApellidos = new JLabel("Apellidos"); //texto 'contraseña' que hay arriba del JtextField.
 		lblApellidos.setBounds(257, 103, 79, 14);
 		add(lblApellidos);
-		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(290, 352, 135, 23);
-		add(btnLogin);
 		
 		border = LineBorder.createGrayLineBorder();  //crea el borde del avatar.
 		
@@ -71,21 +73,21 @@ public class panelPrincipal extends JPanel {
 		add(lblId);
 		
 		textField = new JTextField();
-		textField.setToolTipText("La contrase\u00F1a debe contener diversos caracteres.");
+		
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Sylfaen", Font.PLAIN, 23));
 		textField.setBounds(257, 51, 91, 30);
 		add(textField);
 		
 		textField_1 = new JTextField();
-		textField_1.setToolTipText("La contrase\u00F1a debe contener diversos caracteres.");
+		
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setFont(new Font("Sylfaen", Font.PLAIN, 23));
 		textField_1.setBounds(361, 51, 64, 30);
 		add(textField_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setToolTipText("La contrase\u00F1a debe contener diversos caracteres.");
+	
 		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_2.setFont(new Font("Sylfaen", Font.PLAIN, 23));
 		textField_2.setBounds(257, 199, 149, 30);
@@ -100,10 +102,23 @@ public class panelPrincipal extends JPanel {
 		add(lblNacionalidad);
 		
 		textField_3 = new JTextField();
-		textField_3.setToolTipText("La contrase\u00F1a debe contener diversos caracteres.");
+		
 		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_3.setFont(new Font("Sylfaen", Font.PLAIN, 23));
 		textField_3.setBounds(257, 282, 149, 30);
 		add(textField_3);
+		
+		JButton button = new JButton("Siguiente >>");
+		button.setBounds(290, 351, 135, 23);
+		add(button);
+		
+		String HOST="localhost";
+		String BBDD="delincuentes";
+		String USER="root";
+		String PASS="";
+		ConexionDB conBD = new ConexionDB(HOST, BBDD, USER, PASS);
+		
+		
+		
 	}
 }
